@@ -6,8 +6,6 @@ class Solution:
         
         if numRows >= 2:
             triangle.append([1,1])
-
-        if numRows > 2:
             for i in range(2, numRows):
                 temp = []
                 k = 0
