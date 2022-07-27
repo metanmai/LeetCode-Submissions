@@ -4,7 +4,7 @@ class Solution:
         
         def perms(p):
             if len(p) == len(nums):
-                permutations.append(p.copy())
+                permutations.append(p[ : ])
                 return
             
             for i in range(len(nums)):
