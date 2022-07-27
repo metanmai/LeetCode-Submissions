@@ -1,7 +1,6 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         permutations = []
-        p = []
         
         def perms(p):
             if len(p) == len(nums):
