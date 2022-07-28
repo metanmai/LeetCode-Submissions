@@ -1,31 +1,35 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        d = {}
         answer = []
+        if sum(candidates) == target:
+            answer.append(candidates)
+            return answer
         candidates.sort()
-        
-        for i in candidates:
-            if i not in d:
-                d[i] = 1
-            else:
-                d[i] += 1
-        
-        def combinations(combo, target, start, d):
+        combos = set()
+        def combinations(combo, target, start):
             if target == 0:
-                answer.append(combo.copy())
-            
-            if target <= 0:
+                combos.add(tuple(combo))
                 return
             
-            temp = list(d.keys())
-            for i in range(len(temp)):
-                if d[temp[i]] > 0:
-                    combo.append(temp[i])
-                    d[temp[i]] -= 1
-                    combinations(combo, target - temp[i], i, d)
-                    d[temp[i]] += 1
-                    combo.pop()
-
-        combinations([], target, 0, d)
-        res = list(set(tuple(sorted(sub)) for sub in answer))
-        return res
+            if target < 0:
+                return
+            prev = -1
+            for i in range(start, len(candidates)):
+                if candidates[i] == prev:
+                    continue
+                combo.append(candidates[i])
+                combinations(combo, target - candidates[i], i + 1)
+                combo.pop()
+                prev = candidates[i]
+                
+        
+        combinations([], target, 0)
+        
+        #comb = sorted(combos)
+        #for i in comb:
+         #   temp = []
+          #  for j in i:
+           #answer.append(temp)
+            
+        return list(combos)
+                
