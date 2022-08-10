@@ -14,8 +14,8 @@ class Solution {
 public:
     TreeNode* createBST(vector<int> nums, int l, int r)
     {
-        // This is important to stop the recursive calls.
         int mid = (l + r) / 2;
+        // This is important to stop the recursive calls.
         if(mid < 0 or mid >= nums.size() or l > r)
             return NULL;
 
