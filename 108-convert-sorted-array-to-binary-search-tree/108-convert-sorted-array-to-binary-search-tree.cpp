@@ -15,13 +15,13 @@ public:
     TreeNode* createBST(vector<int> nums, int l, int r)
     {
         // This is important to stop the recursive calls.
-        if(l > r)
-            return NULL;
         int mid = (l + r) / 2;
-        if(mid < 0 or mid >= nums.size())
+        if(mid < 0 or mid >= nums.size() or l > r)
             return NULL;
-        
-        return new TreeNode(nums[mid],createBST(nums, l, mid - 1),createBST(nums, mid + 1, r));
+
+        return new TreeNode(nums[mid], 
+                            createBST(nums, l, mid - 1), 
+                            createBST(nums, mid + 1, r));
     }
     
     TreeNode* sortedArrayToBST(vector<int>& nums) {
