@@ -11,7 +11,7 @@ class Solution:
             else:
                 d[i] += 1
         
-        for i in range(len(s) - len(words) * length  +1):
+        for i in range(len(s) - len(words) * length + 1):
             count = 0
             d2 = d.copy()
             window = s[i : i + length]
