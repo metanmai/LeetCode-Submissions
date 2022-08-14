@@ -16,6 +16,7 @@ class Solution:
             d2 = d.copy()
             window = s[i : i + length]
             k = i
+            
             while (window in d and d[window] > 0 and 
                    k < len(s) - length + 1):
                 d[window] -= 1
