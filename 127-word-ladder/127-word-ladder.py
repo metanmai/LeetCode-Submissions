@@ -35,5 +35,5 @@ class Solution:
                             
             result += 1
         
-        # We return zero if we never reach the end word even after performing BFS.
+        # We return zero if we never the endWord even after performing BFS.
         return 0
