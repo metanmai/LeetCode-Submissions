@@ -3,7 +3,10 @@ class Solution:
         if endWord not in wordList:
             return 0
         
-        neighbours = defaultdict(list) # Default value for any new element in the dictionary will be an empty list.
+        # Default value for any new element in the dictionary will be an empty list.
+        neighbours = defaultdict(list) 
+        
+        # Since beginWord is not a part of the list we first append it.
         wordList.append(beginWord)
         
         for word in wordList:
@@ -32,4 +35,5 @@ class Solution:
                             
             result += 1
         
+        # We return zero if we never reach the end word even after performing BFS.
         return 0
