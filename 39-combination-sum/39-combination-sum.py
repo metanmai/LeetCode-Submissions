@@ -4,18 +4,15 @@ class Solution:
         
         def combinations(combo, target, start):
             if target == 0:
-                answer.append(combo[ : ])
-                return
+                answer.append(combo)
             
             if target < 0:
                 return
             
             for i in range(start, len(candidates)):
                 combo.append(candidates[i])
-                combinations(combo, target - candidates[i], i)
+                combinations(combo.copy(), target - candidates[i], i)
                 combo.pop()
-                
-        
+            
         combinations([], target, 0)
         return answer
-                
