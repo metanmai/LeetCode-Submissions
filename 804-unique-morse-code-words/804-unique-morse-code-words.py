@@ -9,4 +9,4 @@ class Solution:
                 temp += code[ord(j) - ord('a')]
             morse.add(temp)
         
-        return len(set(morse))
+        return len(morse)
