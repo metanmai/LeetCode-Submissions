@@ -11,25 +11,24 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        struct ListNode *curr = head, *next = curr->next, *prev = NULL, *head2;
-    
+        ListNode *curr = head;
         vector<int> a;
-        vector<int> b;
-        int k = 0;
 
         while(curr != NULL)
         {
             a.push_back(curr->val);
-            b.push_back(curr->val);
             curr = curr->next;
         }
         
         std::reverse(a.begin(), a.end());
-
-        for(int i = 0; i < a.size() - 1; i++)
-            if(a[i] != b[i])
-                return false;
-
-        return true;
+        int i = 0, j = a.size() - 1;
+        
+        while(i <= j and a[i] == a[j])
+        {
+            i++;
+            j--;
+        }
+        
+        return i > j;
     }
 };
