@@ -1,25 +1,21 @@
 class Solution:
     def reorderedPowerOf2(self, n: int) -> bool:
-        
+        # Run a while loop till the highest permutation on n (Eg : 4210 for 1024)
+        # Check if any power of 2 is a permutation of this number.
         def sortString(s):
-            l = list(s)
-            l2 = sorted(l, reverse = True)
+            l = sorted(s, reverse = True)
             s = ""
-            for i in l2:
+            for i in l:
                 s += i
                 
             return s
         
-        x = str(n)
-        x2 = sortString(x)
-        n = int(x2)
+        n_str = sortString(str(n))
+        n = int(n_str)
         i = 1
-        
+    
         while i <= n:
-            s = str(i)
-            s2 = sortString(s)
-            
-            if s2 == x2:
+            if sortString(str(i)) == n_str:
                 return True
             
             i *= 2
