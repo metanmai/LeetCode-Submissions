@@ -1,9 +1,11 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        jumpIndex = len(nums) - 1
+        maxJump = 0
         
-        for i in range(len(nums) - 1, -1, -1):
-            if i + nums[i] >= jumpIndex:
-                jumpIndex = i
+        for i in range(len(nums)):
+            if i > maxJump:
+                return False
+            else:
+                maxJump = max(i + nums[i], maxJump)
         
-        return jumpIndex == 0
+        return maxJump >= len(nums) - 1
