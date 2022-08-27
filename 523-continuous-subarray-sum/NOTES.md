@@ -5,4 +5,6 @@ Since 5 is not already present in the dictionary, we add it to the dictionary an
 ​
 Now, check if the subarray length is >= 2. We do this by checking if the difference of the current index value in the array and the index value stored in the dictionary for the same remainder is >= 2.
 ​
-There is however an edge case, where in if the first element is a multiple of 6, it returns True, which is not the case as the subarray is only of size 1. This is handled by initializing the dictionary with a 0 : -1 which basically means that
+There is however an edge case, where in if the first element is a multiple of 6, it returns True, which is not the case as the subarray is only of size 1. This is handled by initializing the dictionary with a 0 : -1. We are adding the 0 because there are cases where the running sum itself becomes a multiple if k, i.e, the very subarrays which start at index 0 but satify the condition will not pass the test as 0 won't already be present in the dictionary so we add that beforehand. The -1 is for the case where the very first element in the list is a multiple of k. So if that's the case, then we check the elif condition, where the length is given as 0 - (-1) = 1, so we don't immediately return True.
+​
+Watch https://youtu.be/OKcrLfR-8mE for further clarity.
