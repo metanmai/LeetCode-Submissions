@@ -13,10 +13,9 @@ class Solution:
                 return False
             
             visited.add((x2, y2))
-            if [x2, y2] in answer:
-                return True
             
-            return (canFlowPacific(x2, y2, x2 - 1, y2, visited) or
+            return ([x2, y2] in answer or 
+                    canFlowPacific(x2, y2, x2 - 1, y2, visited) or
                     canFlowPacific(x2, y2, x2, y2 - 1, visited) or
                     canFlowPacific(x2, y2, x2 + 1, y2, visited) or
                     canFlowPacific(x2, y2, x2, y2 + 1, visited))
@@ -31,11 +30,10 @@ class Solution:
                   heights[x1][y1] < heights[x2][y2]):
                 return False
             
-            visited.add((x2, y2))
-            if [x2, y2] in answer:
-                return True
+            visited.add((x2, y2))  
             
-            return (canFlowAtlantic(x2, y2, x2 - 1, y2, visited) or
+            return ([x2, y2] in answer or 
+                    canFlowAtlantic(x2, y2, x2 - 1, y2, visited) or
                     canFlowAtlantic(x2, y2, x2, y2 - 1, visited) or
                     canFlowAtlantic(x2, y2, x2 + 1, y2, visited) or
                     canFlowAtlantic(x2, y2, x2, y2 + 1, visited))
