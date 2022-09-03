@@ -27,11 +27,6 @@ class Solution:
                     board[i][j] = "."
                     col.remove(j), dgn1.remove(i - j), dgn2.remove(i + j)
         
-        for i in range(n):
-            board[0][i] = "Q"
-            col, dgn1, dgn2 = set(), set(), set()
-            col.add(i), dgn1.add(-i), dgn2.add(i)
-            queen(board.copy(), col, dgn1, dgn2, 1)
-            board[0][i] = "."
+        queen(board.copy(), set(), set(), set(), 0)
         
         return answer
