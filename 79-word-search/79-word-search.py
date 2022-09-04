@@ -21,12 +21,9 @@ class Solution:
             visited.remove((x, y))
             return condition
         
-        answer = False
         for i in range(r):
             for j in range(c):
-                if board[i][j] == word[0]:
-                    answer = dfs(i, j, 0)
-                    if answer:
+                    if dfs(i, j, 0):
                         return True
 
         return False
