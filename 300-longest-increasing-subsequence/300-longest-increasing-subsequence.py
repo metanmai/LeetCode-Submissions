@@ -1,4 +1,4 @@
-# O(n) algorithm
+# O(n^2) algorithm
 
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
