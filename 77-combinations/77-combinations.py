@@ -4,12 +4,12 @@ class Solution:
         
         def combinations(start, comb):
             if len(comb) == k:
-                answer.append(comb)
+                answer.append(comb.copy())
                 return
             
             for i in range(start, n + 1):
                 comb.append(i)
-                combinations(i + 1, comb.copy())
+                combinations(i + 1, comb)
                 comb.pop()
                 
         combinations(1, [])
