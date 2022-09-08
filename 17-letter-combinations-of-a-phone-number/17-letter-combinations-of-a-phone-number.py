@@ -3,7 +3,7 @@ class Solution:
         if digits == "":
             return []
         
-        maps = ["-", "-", "abc", "def","ghi","jkl","mno", "pqrs","tuv","wxyz"]
+        maps = ["-", "-", "abc", "def","ghi","jkl","mno", "pqrs", "tuv", "wxyz"]
         answer = []
         
         def combos(num, comb):
