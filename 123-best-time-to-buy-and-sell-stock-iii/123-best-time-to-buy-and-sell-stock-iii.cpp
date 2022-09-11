@@ -1,4 +1,4 @@
-// Interation + Tabulation Solution 2 (Top-Down)
+// Interation + Tabulation Solution 2 (Bottom-Up)
 
 class Solution {
 public:
