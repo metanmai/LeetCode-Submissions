@@ -1,22 +1,24 @@
 class Solution {
 public:
-    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
-        int m = obstacleGrid.size(), n = obstacleGrid[0].size();
-        
-        if(obstacleGrid[m - 1][n - 1] == 1)
+    int paths(vector<vector<int>> grid, vector<vector<int>> &visited, int i, int j, int m, int n)
+    {
+        if(i >= m or j >= n or grid[i][j])
             return 0;
         
-        vector<vector<long>> visited(m + 1, vector<long> (n + 1, 0));
-        visited[m - 1][n - 1] = 1;
+        if(i == m - 1 and j == n - 1) // This has to be 'and' and not 'or'.
+            return 1;
         
-        for(int i = m - 1; i >= 0; i--)
-            for(int j = n - 1; j >= 0; j--)
-                if(obstacleGrid[i][j])
-                    visited[i][j] = 0;
-                else
-                    visited[i][j] += visited[i][j + 1] + visited[i + 1][j];
+        if(visited[i][j] != -1)
+            return visited[i][j];
         
-        return visited[0][0];
+        return visited[i][j] = paths(grid, visited, i + 1, j, m, n) + paths(grid, visited, i, j + 1, m, n);
+    }
+    
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int m = obstacleGrid.size(), n = obstacleGrid[0].size();
+        vector<vector<int>> visited(m, vector<int> (n, -1));
+        
+        return paths(obstacleGrid, visited, 0, 0, m, n);
     }
 };
 
