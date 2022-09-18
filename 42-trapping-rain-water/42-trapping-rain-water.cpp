@@ -1,19 +1,18 @@
 class Solution {
 public:
     int trap(vector<int>& height) {
-        int n=height.size();
-        vector<int> lmax(n),rmax(n);
-        lmax[0]=height[0],rmax[n-1]=height[n-1];
-        for(int i=1;i<n;i++){
-            lmax[i]=max(lmax[i-1],height[i]);
-        }
-        for(int i=n-2;i>=0;i--){
-            rmax[i]=max(height[i],rmax[i+1]);
-        }
-        int water=0;
-        for(int i=0;i<n;i++){
-            water+=min(lmax[i],rmax[i])-height[i];
-        }
-        return water;
+        int n = height.size(), totalWater = 0;
+        vector<int> prefixMax(n, height.front()), suffixMax(n, height.back());
+        
+        for(int i = 1; i < n; i++)
+            prefixMax[i] = max(prefixMax[i - 1], height[i]);
+        
+        for(int i = n - 2; i >= 0; i--)
+            suffixMax[i] = max(suffixMax[i + 1], height[i]);
+        
+        for(int i = 0; i < n; i++)
+            totalWater += min(prefixMax[i], suffixMax[i]) - height[i];
+        
+        return totalWater;
     }
 };
