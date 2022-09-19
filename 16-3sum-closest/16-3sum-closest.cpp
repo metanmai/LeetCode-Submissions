@@ -10,7 +10,7 @@ public:
             while(l < r)
             {
                 currSum = nums[i] + nums[l] + nums[r];
-                if(currSum > target) // Decrement r as much as possible then start incrementing l. 
+                if(currSum > target)
                     r--;
                 else
                     l++;
