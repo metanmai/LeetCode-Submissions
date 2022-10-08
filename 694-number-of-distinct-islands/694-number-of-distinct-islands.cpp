@@ -1,35 +1,40 @@
 class Solution {
 public:
-    int R, C;
+    vector<int> dir = {0, 1, 0, -1, 0};
     
-    string dfs(vector<vector<int>>& grid, int r, int c, char dir) {
-        if(r >= R || r < 0 || c >= C || c < 0) 
-            return "";
+    void dfs(int x, int y, int m, int n, vector<vector<int>> &grid, vector<pair<int, int>> &island)
+    {
+        if(x < 0 or y < 0 or x >= m or y >= n or !grid[x][y])
+            return;
         
-        if(grid[r][c] == 0) 
-            return "";
-        
-        string id;
-        grid[r][c] = 0;
-        id.push_back(dir);
-        id += dfs(grid, r+1, c  , 'u');
-        id += dfs(grid, r-1, c  , 'd');
-        id += dfs(grid, r  , c+1, 'r');
-        id += dfs(grid, r  , c-1, 'l');
-        id.push_back('b');
-        return id;
+        grid[x][y] = 0;
+        island.push_back({x, y});
+        for(int i = 0; i < 4; i++)
+            dfs(x + dir[i], y + dir[i + 1], m, n, grid, island);
     }
     
     int numDistinctIslands(vector<vector<int>>& grid) {
-        R = grid.size(), C = grid[0].size();
-
-        unordered_set<string> shapes;
+        int m = grid.size(), n = grid[0].size();
+        set<vector<pair<int, int>>> islands;
         
-        for(int r=0; r < R; ++r)
-            for(int c=0; c < C; ++c)
-                if(grid[r][c] == 1)
-                    shapes.insert(dfs(grid, r, c, 's'));
-
-        return shapes.size();
+        for(int i = 0; i < m; i++)
+            for(int j = 0; j < n; j++)
+            {
+                vector<pair<int, int>> island;
+                
+                if(grid[i][j])
+                   dfs(i, j, m, n, grid, island);
+                
+                for(auto &cell : island)
+                {
+                    cell.first -= i;
+                    cell.second -= j;
+                }
+                
+                if(island.size())
+                    islands.insert(island);
+            }
+        
+        return islands.size();
     }
 };
