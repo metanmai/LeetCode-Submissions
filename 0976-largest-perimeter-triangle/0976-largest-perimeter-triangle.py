@@ -8,5 +8,5 @@ class Solution:
             if a + b > c:
                 return a + b + c
         
-        return 0;
+        return 0
             
