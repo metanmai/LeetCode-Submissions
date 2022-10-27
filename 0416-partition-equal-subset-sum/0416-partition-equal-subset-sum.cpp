@@ -1,28 +1,25 @@
 class Solution {
 public:
-    bool subsetSum(vector<int> nums, int target, int i, vector<vector<int>> &dp)
-    {
-        if(target == 0)
-            return true;
-        
-        if(i < 0 or target < 0)
+    bool canPartition(vector<int>& nums) {
+        int n = nums.size(), totalSum = accumulate(nums.begin(), nums.end(), 0), target = totalSum / 2;
+        vector<vector<bool>> dp(nums.size() + 1, vector<bool> (totalSum, false));
+        if(totalSum % 2)
             return false;
         
-        if(dp[i][target] != -1)
-            return dp[i][target];
+        for(int currSum = target; currSum >= 0; currSum--)
+            for(int i = n - 1; i >= 0; i--)
+            {
+                if(currSum == target)
+                    dp[i][currSum] = true;
+                
+                else if(currSum + nums[i] > target)
+                    dp[i][currSum] = dp[i + 1][currSum];
         
-        return dp[i][target] = (subsetSum(nums, target - nums[i], i - 1, dp) or
-                                subsetSum(nums, target, i - 1, dp));
+                else
+                    dp[i][currSum] = dp[i + 1][currSum + nums[i]] or dp[i + 1][currSum];
+            }
+    
+        return dp[0][0];
     }
     
-    bool canPartition(vector<int>& nums) {
-        int n = nums.size(), target = accumulate(nums.begin(), nums.end(), 0);
-        
-        if(target % 2 != 0)
-            return false;
-        
-        target /= 2;
-        vector<vector<int>> dp(n, vector<int> (target + 1, -1));
-        return subsetSum(nums, target, n - 1, dp);
-    }
 };
