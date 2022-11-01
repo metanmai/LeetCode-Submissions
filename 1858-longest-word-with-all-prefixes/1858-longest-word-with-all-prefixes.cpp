@@ -45,7 +45,6 @@ public:
 class Solution {
 public:
     string longestWord(vector<string>& words) {
-        sort(words.begin(), words.end()); // We are sorting so that longest is the lexicographically smallest.
         Trie tr;
         string longest = "";
         
@@ -53,7 +52,9 @@ public:
             tr.insert(word);
         
         for(string word : words)
-            if(tr.hasAllPrefixes(word) and word.length() > longest.length())
+            if(tr.hasAllPrefixes(word) and 
+               (word.length() > longest.length() or
+                word.length() == longest.length() and word < longest))
                 longest = word;
             
         return longest;
