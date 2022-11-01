@@ -1,4 +1,4 @@
-// O(nlog n) solution
+// O(nlog n) Solution.
 
 class Solution {
 public:
