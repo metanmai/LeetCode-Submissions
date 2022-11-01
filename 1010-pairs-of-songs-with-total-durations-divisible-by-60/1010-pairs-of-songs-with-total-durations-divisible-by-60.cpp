@@ -6,7 +6,7 @@ public:
         sort(time.begin(), time.end());
         
         int n = time.size(), count = 0;
-        int maxi = *max_element(time.begin(), time.end());
+        int maxi = time.back();
         
         for(int i = 0; i < n - 1; i++)
         {
