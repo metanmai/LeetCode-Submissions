@@ -13,9 +13,8 @@ public:
             int start = ceil(time[i] / 60.0) * 60 - time[i];
             
             for(int key = start; key <= maxi; key += 60)
-                if(binary_search(time.begin() + i + 1, time.end(), key))
-                    count += (upper_bound(time.begin() + i + 1, time.end(), key) -
-                              lower_bound(time.begin() + i + 1, time.end(), key));
+                count += (upper_bound(time.begin() + i + 1, time.end(), key) -
+                          lower_bound(time.begin() + i + 1, time.end(), key));
         }
         
         return count;
