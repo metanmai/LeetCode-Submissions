@@ -1,28 +1,51 @@
+// BFS Solution.
+
 class Solution {
 public:
-    void dfs(vector<vector<char>> &grid, int x, int y)
+    vector<int> dirs = {0, 1, 0, -1, 0};
+    int m, n;
+    
+    void bfs(vector<vector<char>> grid, vector<vector<bool>> &visited, int x, int y)
     {
-        if(x >= grid.size() or y >= grid[0].size() or x < 0 or y < 0 or grid[x][y] != '1')
-            return;
+        queue<pair<int, int>> q;
+        q.push({x, y});
         
-        grid[x][y] = '2';
-        dfs(grid, x + 1, y);
-        dfs(grid, x, y + 1);
-        dfs(grid, x - 1, y);
-        dfs(grid, x, y - 1);
+        while(!q.empty())
+        {
+            auto front = q.front();
+            q.pop();
+            
+            for(int i = 0; i < 4; i++)
+            {
+                int r = front.first + dirs[i], c = front.second + dirs[i + 1];
+                if(r >= 0 and c >= 0 and
+                   r < m and c < n and 
+                   !visited[r][c] and grid[r][c] == '1')
+                {
+                    visited[r][c] = true;
+                    q.push({r, c});
+                }
+            }
+        }
     }
     
     int numIslands(vector<vector<char>>& grid) {
-        int count = 0;
+        m = grid.size(), n = grid[0].size();
+        int islands = 0;
+        vector<vector<bool>> visited(m, vector<bool> (n, false));
         
-        for(int i = 0; i < grid.size(); i++)
-            for(int j = 0; j < grid[0].size(); j++)
-                if(grid[i][j] == '1')
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(grid[i][j] == '1' and !visited[i][j])
                 {
-                    dfs(grid, i, j);
-                    count++;
+                    bfs(grid, visited, i, j);
+                    islands++;
                 }
+            }
+        }
         
-        return count;
+        return islands;
     }
 };
