@@ -1,34 +1,27 @@
-// BFS Solution.
+// DFS Solution.
 
 class Solution {
 public:
     vector<int> dirs = {0, 1, 0, -1, 0};
     int m, n;
     
-    int bfs(vector<vector<int>> &grid, int x, int y)
+    int dfs(vector<vector<int>> &grid, int x, int y)
     {
-        int area = 0;
-        queue<vector<int>> q;
-        q.push({x, y, 1});
+        int area = 1;
         
-        while(!q.empty())
+        if(x >= 0 and y >= 0 and
+           x < m and y < n and grid[x][y] == 1)
         {
-            auto cell = q.front();
-            q.pop();
-            int r = cell[0], c = cell[1];
             
-            if(r >= 0 and c >= 0 and
-               r < m and c < n and grid[r][c] == 1)
-            {
-                area++;
-                grid[r][c] = 0;
-                
-                for(int i = 0; i < 4; i++)
-                    q.push({r + dirs[i], c + dirs[i + 1]});
-                    
-            }
+            grid[x][y] = 0;
+            for(int i = 0; i < 4; i++)
+                area += dfs(grid, x + dirs[i], y + dirs[i + 1]);
+            
+            return area;
         }
-        return area;
+        
+        else
+            return 0;
     }
     
     int maxAreaOfIsland(vector<vector<int>>& grid) {
@@ -38,7 +31,7 @@ public:
         for(int i = 0; i < m; i++)
             for(int j = 0; j < n; j++)
                 if(grid[i][j])
-                    maxArea = max(maxArea, bfs(grid, i, j));
+                    maxArea = max(maxArea, dfs(grid, i, j));
         
         return maxArea;
     }
