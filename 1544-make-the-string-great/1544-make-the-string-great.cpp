@@ -1,4 +1,4 @@
-// Naive O(n ^ 2) Solution.
+// Stack O(n) Solution.
 
 class Solution {
 public:
