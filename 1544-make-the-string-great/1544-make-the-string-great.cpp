@@ -1,3 +1,5 @@
+// Naive Solution.
+
 class Solution {
 public:
     string makeGood(string s) {
