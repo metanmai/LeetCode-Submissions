@@ -1,27 +1,26 @@
-// Naive O(n ^ 2) Solution.
+// Stack O(n) Solution.
 
 class Solution {
 public:
     string makeGood(string s) {
-        int i = 0, initial;
-        string answer;
+        stack<char> st;
+        string answer = "";
         
-        do
+        for(int i = 0; i < s.length(); i++)
+            if(!st.empty() and abs(st.top() - s[i]) == 32)
+                st.pop();
+            
+            else
+                st.push(s[i]);
+        
+        while(!st.empty())
         {
-            i = 0, initial = s.length();
-            answer = "";
-            
-            while(i < s.length())
-                if(i != s.length() - 1 and abs(s[i] - s[i + 1]) == 32)
-                    i += 2;
-
-                else
-                    answer.push_back(s[i++]);
-            
-            s = answer;
+            answer.push_back(st.top());
+            st.pop();
         }
-        while(s.length() != initial);
         
-        return s;
+        reverse(answer.begin(), answer.end());
+        return answer;
+        
     }
 };
