@@ -2,7 +2,7 @@ class Solution {
 public:
     int numSquares(int n) {
         vector<int> squares;
-        vector<int> minSquares(n + 1, n);
+        vector<int> minSquares(n + 1, 4); // Lagrange's four-square theorem.
         minSquares[0] = 0;
         int sq = 1;
         
