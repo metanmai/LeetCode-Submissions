@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int find(vector<int> parent, int node)
+    int find(vector<int> &parent, int node)
     {
         while(parent[node] != node)
             node = parent[node];
