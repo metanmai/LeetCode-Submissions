@@ -1,12 +1,11 @@
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
-        int n = heights.size();
-        int l, r, maxArea = 0;
+        int n = heights.size(), maxArea = 0;
+        vector<int> prevSmall(n, -1), nextSmall(n, n);
         stack<int> st;
-        vector<int> prevSmall(n, -1), nextSmall(n, n); // This initialization is super important.
         
-        // NextSmall calculation
+        // nextSmall calculation.
         for(int i = 0; i < n; i++)
         {
             while(!st.empty() and heights[st.top()] > heights[i])
@@ -20,7 +19,7 @@ public:
         while(!st.empty())
             st.pop();
         
-        // PrevSmall calculation
+        // prevSmall calculation.
         for(int i = n - 1; i >= 0; i--)
         {
             while(!st.empty() and heights[st.top()] > heights[i])
@@ -32,7 +31,7 @@ public:
         }
         
         for(int i = 0; i < n; i++)
-            maxArea = max(maxArea, heights[i] * (nextSmall[i] - prevSmall[i] - 1));
+            maxArea = max(maxArea, heights[i] *(nextSmall[i] - prevSmall[i] - 1));
         
         return maxArea;
     }
