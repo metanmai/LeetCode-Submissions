@@ -4,14 +4,11 @@ public:
         int minTime = 0;
         vector<vector<int>> adj(n);
         queue<vector<int>> q; // {node, time}.
+        q.push({headID, 0});
         
         for(int i = 0; i < n; i++)
-        {
             if(manager[i] != -1)
                 adj[manager[i]].push_back(i);
-        }
-        
-        q.push({headID, 0});
         
         while(!q.empty())
         {
