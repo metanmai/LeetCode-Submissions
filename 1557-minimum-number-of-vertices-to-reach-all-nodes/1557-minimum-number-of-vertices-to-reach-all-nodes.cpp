@@ -13,7 +13,7 @@ public:
             indegree[edge[1]]++;
         
         for(int i = 0; i < n; i++)
-            if(!indegree[i])
+            if(indegree[i] == 0)
                 answer.push_back(i);
         
         return answer;
