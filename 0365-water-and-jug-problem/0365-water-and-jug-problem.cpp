@@ -1,31 +1,17 @@
-// BFS Solution.
+// GCD Solution.
 
 class Solution {
+private:
+    int gcd(int a, int b)
+    {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+    
 public:
     bool canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity) {
-        vector<int> dirs = {jug1Capacity, -jug1Capacity, jug2Capacity, -jug2Capacity};
-        vector<bool> visited(jug1Capacity + jug2Capacity + 1);
-        queue<int> q;
-        q.push(0);
+        if (targetCapacity > jug1Capacity + jug2Capacity) 
+            return false;
         
-        while(!q.empty())
-        {
-            int curr = q.front();
-            q.pop();
-            
-            if(curr < 0 or curr > jug1Capacity + jug2Capacity or
-               visited[curr])
-                continue;
-            
-            visited[curr] = true;
-            
-            if(curr == targetCapacity)
-                return true;
-            
-            for(int i = 0; i < 4; i++)
-                q.push(curr + dirs[i]);
-        }
-        
-        return false;
+        return targetCapacity % gcd(jug1Capacity, jug2Capacity) == 0;
     }
 };
