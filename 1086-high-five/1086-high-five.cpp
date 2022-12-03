@@ -9,7 +9,7 @@ public:
         
         for(auto student : studentMarks)
         {
-            int topFive = 0, avg;
+            int topFive = 0;
             for(int i = 1; i <= 5; i++)
                 topFive += student.second.top(), student.second.pop();
             
