@@ -14,7 +14,9 @@ class Solution {
             else 
                 currSum += weights[i];
         }
-        if(currSum > 0)  currDays++;
+        
+        if(currSum > 0) 
+            currDays++;
         
         return days < currDays;
     }
@@ -23,7 +25,6 @@ class Solution {
         int low = Arrays.stream(weights).max().getAsInt();
         int high = Arrays.stream(weights).sum();
         
-        System.out.println(low + " " + high);
         while(low <= high)
         {
             int mid = (high + low) / 2;
