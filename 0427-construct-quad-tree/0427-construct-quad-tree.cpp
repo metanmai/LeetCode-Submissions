@@ -55,6 +55,7 @@ private:
     Node *quadTree(vector<vector<int>> &grid, int row, int col, int side)
     {
         Node *root = new Node();
+        
         if(checkVals(grid, row, col, side))
         {
             root->isLeaf = true;
