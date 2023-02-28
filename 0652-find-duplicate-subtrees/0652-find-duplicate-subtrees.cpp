@@ -24,8 +24,7 @@ private:
             return str;
         }
         
-        else
-            return "N";
+        return "N";
     }
     
 public:
