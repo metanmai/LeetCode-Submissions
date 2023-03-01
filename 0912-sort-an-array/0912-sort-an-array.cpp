@@ -1,7 +1,7 @@
 class Solution {
 private:
     template<typename T>
-    vector<T> mergeSort(vector<T> &arr, int l, int r)
+    vector<T> mergeSort(const vector<T> &arr, int l, int r)
     {
         if(l < r)
         {
