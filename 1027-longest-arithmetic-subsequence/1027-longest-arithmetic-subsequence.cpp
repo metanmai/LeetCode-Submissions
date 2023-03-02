@@ -11,9 +11,8 @@ public:
                 if(nums[i] + k >= 0)
                     maxLen = max(maxLen, 
                                  dp[k + maxDiff][nums[i]] = dp[k + maxDiff][nums[i] + k] + 1);
-                else
-                    maxLen = max(maxLen, 
-                                 dp[k + maxDiff][nums[i]] = 1);
+                else 
+                     dp[k + maxDiff][nums[i]] = 1;
         
         return maxLen;
     }
