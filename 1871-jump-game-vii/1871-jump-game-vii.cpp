@@ -1,28 +1,26 @@
-// Priority Queue Solution.
+// BFS Solution.
 
 class Solution {
 public:
     bool canReach(string s, int minJump, int maxJump) {
-        int n = s.length();
+        int n = s.length(), farthest = 0;
+        queue<int> q;
+        q.push(0);
         
-        priority_queue<int, vector<int>, greater<>> pq;
-        pq.push(0);
-        
-        for(int i = 1; i < n; i++)
+        while(!q.empty())
         {
-            if(s[i] == '0')
-            {
-                while(!pq.empty() and i - pq.top() > maxJump)
-                    pq.pop();
-                
-                if(!pq.empty() and i - pq.top() >= minJump)
+            int index = q.front(); q.pop();
+            
+            for(int pos = max(farthest + 1, index + minJump); pos < min(n, index + maxJump + 1); pos++)
+                if(s[pos] == '0')
                 {
-                    if(i == n - 1)
+                    if(pos == n - 1)
                         return true;
                     
-                    pq.push(i);
+                    q.push(pos);
                 }
-            }
+            
+            farthest = index + maxJump;
         }
         
         return false;
