@@ -12,6 +12,7 @@
 class Solution {
 private:
     TreeNode *createBST(vector<int> &inorder, vector<int> &postorder, 
+                        map<int, int> &indices,
                         int ileft, int iright, int pleft, int pright)
     {
         if(pleft > pright)
@@ -19,16 +20,12 @@ private:
         
         TreeNode *root = new TreeNode(postorder[pright]);
         
-        int idx = -1;
-        for(int k = ileft; k <= iright; k++)
-            if(inorder[k] == root->val)
-                idx = k;
-        
+        int idx = indices[root->val];
         int leftLen = idx - ileft, rightLen = iright - idx;
         
-        root->left = createBST(inorder, postorder, 
+        root->left = createBST(inorder, postorder, indices,
                                ileft, idx - 1, pleft, pleft + leftLen - 1);
-        root->right = createBST(inorder, postorder, 
+        root->right = createBST(inorder, postorder, indices,
                                 idx + 1, iright, pright - rightLen, pright - 1);
         
         return root;
@@ -37,6 +34,11 @@ private:
 public:
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         int n = inorder.size();
-        return createBST(inorder, postorder, 0, n - 1, 0, n - 1);
+        map<int, int> indices; //{ele, index}.
+        
+        for(int i = 0; i < n; i++)
+            indices[inorder[i]] = i;
+        
+        return createBST(inorder, postorder, indices, 0, n - 1, 0, n - 1);
     }
 };
