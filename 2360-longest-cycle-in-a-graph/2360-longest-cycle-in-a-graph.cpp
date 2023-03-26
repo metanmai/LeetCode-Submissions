@@ -5,7 +5,7 @@ public:
     int longestCycle(vector<int>& edges) {
         int n = edges.size(), answer = -1;
         vector<pair<int, int>> took(n); // To check if current edge is taken.
-        for (int node = 0; node < n; ++node)
+        for (int node = 0; node < n; node++)
         {
             int len = 1, curr = node;
             
