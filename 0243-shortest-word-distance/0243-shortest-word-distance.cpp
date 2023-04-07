@@ -2,7 +2,6 @@ class Solution {
 public:
     int shortestDistance(vector<string>& wordsDict, string word1, string word2) {
         int minDist = INT_MAX, prevWord = 0, prevIndex = -1;
-        vector<int> wordIndices;
         
         for(int i = 0; i < wordsDict.size(); i++)
         {
