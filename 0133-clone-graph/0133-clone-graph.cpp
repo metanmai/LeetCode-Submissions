@@ -29,13 +29,12 @@ private:
         if(mp.find(node->val) != mp.end())
             return mp[node->val];
         
-        Node *root = new Node(node->val);
-        mp[node->val] = root;
+        mp[node->val] = new Node(node->val);
         
         for(auto ele : node->neighbors)
-            root->neighbors.push_back(clone(ele, mp));
+            mp[node->val]->neighbors.push_back(clone(ele, mp));
         
-        return root;
+        return mp[node->val];
     }
     
 public:
