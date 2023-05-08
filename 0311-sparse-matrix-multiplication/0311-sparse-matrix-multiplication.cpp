@@ -9,7 +9,6 @@ public:
                 for(int k = 0; k < n; k++)
                     answer[i][j] += mat1[i][k] * mat2[k][j];
         
-        
         return answer;
     }
 };
