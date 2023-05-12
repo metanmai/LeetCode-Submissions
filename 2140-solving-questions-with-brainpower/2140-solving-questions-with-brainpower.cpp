@@ -9,6 +9,7 @@ public:
         for(int pos = n - 1; pos >= 0; pos--)
         {
             ll take = questions[pos][0];
+            
             if(pos + questions[pos][1] + 1 < n)
                 take += dp[pos + questions[pos][1] + 1];
             
