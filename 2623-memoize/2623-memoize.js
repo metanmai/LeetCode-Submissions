@@ -7,10 +7,10 @@ function memoize(fn) {
     return function(...args) {
         var key = JSON.stringify(args);
         
-            if(key in hash)
-            return hash[key];
-            
-            return hash[key] = fn(...args);
+        if(key in hash)
+        return hash[key];
+
+        return hash[key] = fn(...args);
     }
 }
 
