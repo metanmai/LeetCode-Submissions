@@ -10,8 +10,7 @@ function memoize(fn) {
             if(key in hash)
             return hash[key];
             
-            hash[key] = fn(...args);
-            return hash[key];
+            return hash[key] = fn(...args);
     }
 }
 
