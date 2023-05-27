@@ -14,12 +14,12 @@ private:
         for(int i = pos; i < min(n, pos + 2 * m); i++)
         {
             if(alice)
-                score = max(score, 
+                score = max(score, // Maximize Alice's score on Alice's turn.
                             (prefix[i + 1] - prefix[pos] +
                              maxScore(piles, dp, prefix, i + 1, max(m, i + 1 - pos), n, !alice)));
             
             else
-                score = min(score, 
+                score = min(score, // Minimize Alice's score on Bob's turn.
                             maxScore(piles, dp, prefix, i + 1, max(m, i + 1 - pos), n, !alice));
         }
         
