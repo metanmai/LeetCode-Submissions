@@ -2,11 +2,11 @@
  * @param {number} millis
  */
 async function sleep(millis) {
-  return new Promise((res,rej) => {
+  return new Promise((resolve, reject) => {
     try {
-      setTimeout(() => res(5), millis)
+      setTimeout(() => resolve(), millis)
     } catch(err) {
-      rej(err)
+      reject(err)
     }
   })
 }
