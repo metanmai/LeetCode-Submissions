@@ -6,8 +6,7 @@ private:
     int n;
     
 public:
-    TicTacToe(int n)
-    {
+    TicTacToe(int n) {
         this->n = n;
         rowCount.resize(3, vector<int> (n));
         colCount.resize(3, vector<int> (n));
