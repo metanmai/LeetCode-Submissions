@@ -1,27 +1,23 @@
 class Solution {
-private:
-    int findCombinations(vector<vector<int>> &dp, vector<int> &coins, 
-                         int amount, int i, int n)
-    {
-        if(i == n or amount < 0)
-            return 0;
-        
-        if(amount == 0)
-            return 1;
-        
-        if(dp[amount][i] != -1)
-            return dp[amount][i];
-        
-        int stay = findCombinations(dp, coins, amount - coins[i], i, n);
-        int next = findCombinations(dp, coins, amount, i + 1, n);
-        
-        return dp[amount][i] = stay + next;
-    }
-    
 public:
     int change(int amount, vector<int>& coins) {
         int n = coins.size();
-        vector<vector<int>> dp(amount + 1, vector<int> (n, -1));
-        return findCombinations(dp, coins, amount, 0, n);
+        vector<vector<int>> dp(amount + 1, vector<int> (n + 1));
+        
+        for(int j = 0; j <= n; j++)
+            dp[0][j] = 1;
+        
+        for(int i = n - 1; i >= 0; i--)
+        {
+            for(int j = 0; j <= amount; j++)
+            {
+                int stay = j - coins[i] >= 0 ? dp[j - coins[i]][i] : 0;
+                int next = dp[j][i + 1];
+
+                dp[j][i] = stay + next;
+            }
+        }
+        
+        return dp[amount][0];
     }
 };
