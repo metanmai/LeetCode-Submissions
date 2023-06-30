@@ -8,15 +8,8 @@ public:
             dp[0][j] = 1;
         
         for(int i = n - 1; i >= 0; i--)
-        {
             for(int j = 0; j <= amount; j++)
-            {
-                int stay = j - coins[i] >= 0 ? dp[j - coins[i]][i] : 0;
-                int next = dp[j][i + 1];
-
-                dp[j][i] = stay + next;
-            }
-        }
+                dp[j][i] = (j - coins[i] >= 0 ? dp[j - coins[i]][i] : 0) + dp[j][i + 1];
         
         return dp[amount][0];
     }
