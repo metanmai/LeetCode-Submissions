@@ -1,9 +1,9 @@
 class Solution {
 private:
     void maxRequest(vector<vector<int>>& requests, vector<int>& indegree, 
-                    int n, int index, int count, int &answer) {
+                    int n, int i, int count, int &answer) {
         
-        if (index == requests.size()) 
+        if (i == requests.size()) 
         {
             for (int i = 0; i < n; i++) 
                 if (indegree[i]) 
@@ -13,21 +13,21 @@ private:
             return;
         }
         
-        indegree[requests[index][0]]--;
-        indegree[requests[index][1]]++;
+        indegree[requests[i][0]]--;
+        indegree[requests[i][1]]++;
 
-        maxRequest(requests, indegree, n, index + 1, count + 1, answer);
+        maxRequest(requests, indegree, n, i + 1, count + 1, answer);
 
-        indegree[requests[index][0]]++;
-        indegree[requests[index][1]]--;
+        indegree[requests[i][0]]++;
+        indegree[requests[i][1]]--;
         
-        maxRequest(requests, indegree, n, index + 1, count, answer);
+        maxRequest(requests, indegree, n, i + 1, count, answer);
     }
 
 public:
     int maximumRequests(int n, vector<vector<int>>& requests) {
         int answer = 0;
-        vector<int> indegree(n, 0);
+        vector<int> indegree(n);
         
         maxRequest(requests, indegree, n, 0, 0, answer);
         return answer;
