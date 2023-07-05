@@ -16,7 +16,7 @@ public:
         
         for(int i = n - 1; i >= 0; i--)
             maxLen = max(maxLen, dp[arr[i] + shift] = max(dp[arr[i] + shift], 
-                                                   1 + dp[arr[i] + diff + shift]));
+                                                          1 + dp[arr[i] + diff + shift]));
         
         return maxLen;
     }
