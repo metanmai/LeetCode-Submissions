@@ -15,10 +15,12 @@ private:
             answer.push_back(part);
             return;
         }
+        
+        string temp = "";
 
         for(int i = start; i < n; i++)
         {
-            string temp = s.substr(start, i - start + 1);
+            temp.push_back(s[i]);
             
             if(isPalindrome(temp))
             {
