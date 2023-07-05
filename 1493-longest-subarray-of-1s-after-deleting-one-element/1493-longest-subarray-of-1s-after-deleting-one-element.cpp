@@ -8,17 +8,11 @@ public:
         for(int i = 0; i < n + 1; i++)
         {
             if(nums[i] == 1)
-            {
                 currLen++;
-            }
             
             else
             {
-                if(i > 0 and nums[i - 1] == 1)
-                    maxLen = max(maxLen, currLen + prevLen);
-                
-                else
-                    maxLen = max(maxLen, currLen + prevLen);
+                maxLen = max(maxLen, currLen + prevLen);
                 
                 prevLen = currLen;
                 currLen = 0;
