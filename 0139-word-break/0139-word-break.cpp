@@ -1,26 +1,26 @@
 class Solution {
 private:
-    bool checkWords(string &s, set<string> &st, vector<int> &dp, int pos) {
-        if (pos == s.length()) {
+    bool checkWords(string &s, set<string> &words, vector<int> &dp, int start, int n) {
+        if (start == n)
             return true;
-        }
-        if (dp[pos] != 0) {
-            return dp[pos] == 1;
-        }
-        for (int i = pos + 1; i <= s.length(); i++) {
-            if (st.find(s.substr(pos, i - pos)) != st.end() && checkWords(s, st, dp, i)) {
-                dp[pos] = 1;
-                return true;
-            }
-        }
-        dp[pos] = -1;
-        return false;
+        
+        if (dp[start] != -1)
+            return dp[start];
+        
+        for (int i = start; i < n; i++) 
+            if (words.find(s.substr(start, i - start + 1)) != words.end() and 
+                checkWords(s, words, dp, i + 1, n))
+                return dp[start] = 1;
+    
+        return dp[start] = 0;
     }
     
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-        vector<int> dp(s.length(), 0);
-        set<string> st = set(wordDict.begin(), wordDict.end());
-        return checkWords(s, st, dp, 0);
+        int n = s.length();
+        vector<int> dp(n, -1);
+        set<string> words = set(wordDict.begin(), wordDict.end());
+        
+        return checkWords(s, words, dp, 0, n);
     }
 };
