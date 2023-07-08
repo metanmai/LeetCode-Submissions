@@ -12,7 +12,6 @@ public:
             for(int i = start; i < min(start + k, n); i++)
             {
                 currMax = max(currMax, arr[i]);
-
                 int prod = currMax * (i - start + 1) + dp[i + 1];
 
                 dp[start] = max(dp[start], prod);
