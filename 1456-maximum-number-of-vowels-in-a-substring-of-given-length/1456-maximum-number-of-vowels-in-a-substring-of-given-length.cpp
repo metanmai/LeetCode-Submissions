@@ -1,22 +1,34 @@
 class Solution {
+private:
+    bool isVowel(char ch)
+    {
+        return ch == 'a' or ch == 'e' or ch == 'i' or ch == 'o' or ch == 'u';
+    }
+    
 public:
     int maxVowels(string s, int k) {
-        unordered_set<char> vowels{'a', 'e', 'i', 'o', 'u'};
+        int currVowels = 0;
         
-        // Build the window of size k, count the number of vowels it contains.
-        int count = 0;
-        for (int i = 0; i < k; i++) {
-            count += vowels.count(s[i]);
-        } 
-        int answer = count;
+        for(int j = 0; j < k; j++)
+            if(isVowel(s[j]))
+                currVowels++;
         
-        // Slide the window to the right, focus on the added character and the
-        // removed character and update "count". Record the largest "count".
-        for (int i = k; i < s.length(); i++) {
-            count += vowels.count(s[i]) - vowels.count(s[i - k]);
-            answer = max(answer, count);
+        int maxVowels = currVowels;
+        
+        if(isVowel(s[0]))
+            currVowels--;
+        
+        for(int i = 1, j = k; j < s.length(); i++, j++)
+        {
+            if(isVowel(s[j]))
+                currVowels++;
+            
+            maxVowels = max(maxVowels, currVowels);
+            
+            if(isVowel(s[i]))
+                currVowels--;
         }
         
-        return answer;
+        return maxVowels;
     }
 };
