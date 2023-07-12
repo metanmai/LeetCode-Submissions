@@ -11,7 +11,7 @@ public:
         
         for(int i = n - 1; i >= 0; i--)
         {
-            for(int prev = n - 1; prev >= -1; prev--)
+            for(int prev = i; prev >= -1; prev--)
             {
                 int take = 0, notTake = 0;
         
