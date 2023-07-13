@@ -2,7 +2,7 @@ class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         vector<int> indegree(numCourses);
-        map<int, vector<int>> adj;
+        vector<vector<int>> adj(numCourses);
         queue<int> q;
         int topoLen = 0;
         
