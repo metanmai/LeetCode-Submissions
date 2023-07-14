@@ -10,7 +10,7 @@ public:
             shift += -mini;
         
         if(diff < 0)
-            shift += - diff;
+            shift += -diff;
         
         vector<int> dp(maxi + shift + max(0, diff) + 1);
         
