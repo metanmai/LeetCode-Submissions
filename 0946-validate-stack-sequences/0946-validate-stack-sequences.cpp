@@ -2,26 +2,20 @@ class Solution {
 public:
     bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
         stack<int> st;
-        int i = 0, j = 0, n = pushed.size();
+        int n = pushed.size();
+        int j = 0;
         
-        while(j < n)
+        for(int i = 0; i < n; i++)
         {
-            if(i < n)
-            {
-                st.push(pushed[i]);
-                i++;
-            }
+            st.push(pushed[i]);
             
-            if(i == n and popped[j] != st.top())
-                return false;
-            
-            while(j < n and !st.empty() and popped[j] == st.top())
+            while(!st.empty() and st.top() == popped[j])
             {
                 st.pop();
                 j++;
             }
         }
         
-        return true;
+        return st.empty();
     }
 };
