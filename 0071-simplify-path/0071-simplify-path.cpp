@@ -36,7 +36,7 @@ public:
         for(int i = dirs.size() - 1; i >= 0; i--)
             answer += dirs[i] + "/";
         
-        if(answer.size() > 1)
+        if(answer.length() > 1)
             answer.pop_back();
         
         return answer;
