@@ -6,22 +6,22 @@ public:
         if (n < 3)
             return false;
         
-        stack<int> stk;
-        vector<int> min_array(n);
-        min_array[0] = nums[0];
+        stack<int> st; // This is for the '3' in 1, 3, 2.
+        vector<int> prefixMin(n); // This is for the '1' in 1, 3, 2.
+        prefixMin[0] = nums[0];
 
         for (int i = 1; i < n; i++) 
-            min_array[i] = min(min_array[i - 1], nums[i]);
+            prefixMin[i] = min(prefixMin[i - 1], nums[i]);
         
-        for (int j = n - 1; j > 0; j--) 
+        for (int j = n - 1; j > 0; j--) // This is for the '2' in 1, 3, 2.
         {
-            while (!stk.empty() and stk.top() <= min_array[j]) 
-                stk.pop();
+            while (!st.empty() and st.top() <= prefixMin[j]) 
+                st.pop();
             
-            if (!stk.empty() and stk.top() < nums[j])
+            if (!st.empty() and st.top() < nums[j])
                 return true;
             
-            stk.push(nums[j]);
+            st.push(nums[j]);
         }
         
         return false;
