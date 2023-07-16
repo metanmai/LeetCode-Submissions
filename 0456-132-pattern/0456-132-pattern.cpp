@@ -1,3 +1,5 @@
+// Go read Approach 4 in leetcode's official solution. It's pretty good.
+
 class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
