@@ -15,9 +15,6 @@ public:
         
         for (int j = n - 1; j > 0; j--) 
         {
-            if (nums[j] <= min_array[j])
-                continue;
-            
             while (!stk.empty() and stk.top() <= min_array[j]) 
                 stk.pop();
             
