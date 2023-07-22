@@ -5,16 +5,12 @@ private:
     
     double findProbability(vector<vector<vector<double>>> &dp, int row, int col, int k, int n)
     {
+        // If the knight ever leaves the board, we return 0.
         if(!(min(row, col) >= 0 and max(row, col) < n))
             return 0;
         
         if(k == 0)
             return 1;
-        
-        // This base case actually made more sense to me, but idk.
-        
-        // if(k == 0)
-        //     return (double) (min(row, col) >= 0 and max(row, col) < n);
         
         if(dp[row][col][k] != -1)
             return dp[row][col][k];
