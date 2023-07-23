@@ -11,7 +11,7 @@
  */
 class Solution {
 private:
-    vector<TreeNode *> allFullTrees(unordered_map<int, vector<TreeNode *>> &fullTrees, int n)
+    vector<TreeNode *> allFullTrees(map<int, vector<TreeNode *>> &fullTrees, int n)
     {
         if(fullTrees.find(n) != fullTrees.end())
             return fullTrees[n];
@@ -34,7 +34,7 @@ public:
         if(n % 2 == 0)
             return {};
         
-        unordered_map<int, vector<TreeNode *>> fullTrees;
+        map<int, vector<TreeNode *>> fullTrees;
         fullTrees[1] = {new TreeNode};
         
         return allFullTrees(fullTrees, n);
