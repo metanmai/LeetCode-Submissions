@@ -1,12 +1,11 @@
 class Solution {
 private:
-    string getAnswer(string &expression, int i, int j)
+    string getAnswer(string &expression, int i, int j) // This is kinda like preorder traversal.
     {
         if(i == j)
             return string(1, expression[i]);
         
         char cond = expression[i];
-        
         int k = i + 2, questionMarks = 1;
         
         while(questionMarks > 0)
