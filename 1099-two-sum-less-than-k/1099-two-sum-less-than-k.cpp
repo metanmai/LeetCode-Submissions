@@ -8,6 +8,7 @@ public:
         {
             int nextNum = k - (nums[i]);
             int nextNumPos = lower_bound(nums.begin() + i + 1, nums.end(), nextNum) - nums.begin() - 1;
+            
             if(nextNumPos > i)
                 maxSum = max(maxSum, nums[nextNumPos] + nums[i]);
         }
