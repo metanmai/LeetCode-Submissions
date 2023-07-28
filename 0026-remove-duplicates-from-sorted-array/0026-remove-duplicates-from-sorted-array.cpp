@@ -10,8 +10,7 @@ public:
             while(i < n and nums[i] == initialNum)
                 i++;
             
-            nums[lastPos] = nums[i - 1];
-            lastPos++;
+            nums[lastPos++] = initialNum;
         }
         
         return lastPos;
