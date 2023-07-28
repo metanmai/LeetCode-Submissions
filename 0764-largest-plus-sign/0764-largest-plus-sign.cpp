@@ -64,7 +64,8 @@ public:
         for(int i = 0; i < n; i++)
             for(int j = 0; j < n; j++)
                 if(matrix[i][j] == 1)
-                answer = max(answer, 1 + min(min(left[i][j], right[i][j]), min(up[i][j], down[i][j])));
+                answer = max(answer, 1 + min(min(left[i][j], right[i][j]), 
+                                             min(up[i][j], down[i][j])));
         
         return answer;
     }
