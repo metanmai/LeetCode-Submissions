@@ -5,15 +5,16 @@ public:
         
         for(int i = 1; i < n; i++)
         {
-            if(nums[i] != shift + i + extra)
+            int currNum = i + shift + extra;
+            if(nums[i] != currNum)
             {
-                int diff = nums[i] - (shift + i + extra);
+                int diff = nums[i] - (currNum);
                 
                 if(diff >= k)
-                    return shift + i + extra + k - 1;
+                    return currNum + k - 1;
                 
                 k -= diff;
-                extra += nums[i] - (shift + i + extra);
+                extra += nums[i] - (currNum);
             }
         }
         
