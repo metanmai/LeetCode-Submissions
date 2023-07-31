@@ -6,15 +6,16 @@ public:
         for(int i = 1; i < n; i++)
         {
             int currNum = i + shift + extra;
+            
             if(nums[i] != currNum)
             {
-                int diff = nums[i] - (currNum);
+                int diff = nums[i] - currNum;
                 
                 if(diff >= k)
                     return currNum + k - 1;
                 
                 k -= diff;
-                extra += nums[i] - (currNum);
+                extra += diff;
             }
         }
         
