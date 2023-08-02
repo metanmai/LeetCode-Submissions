@@ -13,20 +13,24 @@ public:
         {
             for(int j = i + 1; j < n; j++)
             {
-                int low = j, high = n - 1;
+                int lastValid = j;
+                int low = j + 1, high = n - 1;
                 
-                while(low < high)
+                while(low <= high)
                 {
                     int mid = (high + low + 1) / 2;
                     
                     if(isValidNum(nums[i], nums[j], nums[mid]))
-                        low = mid;
+                    {
+                        lastValid = mid;
+                        low = mid + 1;
+                    }
                     
                     else
                         high = mid - 1;
                 }
                 
-                answer += low - j;
+                answer += lastValid - j;
             }
         }
         
