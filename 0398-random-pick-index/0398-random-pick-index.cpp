@@ -9,9 +9,7 @@ public:
     }
     
     int pick(int target) {
-        int totalIndices = mp[target].size();
-        
-        return mp[target][rand() % totalIndices];
+        return mp[target][rand() % mp[target].size()];
     }
 };
 
