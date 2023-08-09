@@ -18,7 +18,7 @@ public:
                 i++;
             }
             
-            return pairs >= p;
+            return pairs == p;
         };
         
         while(low < high)
