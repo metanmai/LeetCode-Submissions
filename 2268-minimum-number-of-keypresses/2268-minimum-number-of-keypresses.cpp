@@ -7,7 +7,7 @@ public:
         for(char ch : s)
             letters[ch - 'a']++;
         
-        sort(letters.begin(), letters.end(), greater<> ());
+        sort(letters.begin(), letters.end(), greater<>());
         
         for(auto ele : letters)
         {
