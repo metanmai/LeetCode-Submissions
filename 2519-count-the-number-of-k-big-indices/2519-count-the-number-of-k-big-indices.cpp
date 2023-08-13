@@ -6,7 +6,7 @@ public:
         vector<bool> leftValid(n);
         
         for(int i = 0; i < k; i++) 
-            left.push(nums[i]), right.push(nums[n-1-i]);
+            left.push(nums[i]), right.push(nums[n - 1 - i]);
         
         for (int i = k; i < n - k; i++) 
         {
