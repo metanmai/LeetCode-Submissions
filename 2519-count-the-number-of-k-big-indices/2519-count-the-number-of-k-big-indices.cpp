@@ -14,10 +14,7 @@ public:
                 leftValid[i] = true;
             
             else 
-            {
-                left.pop();
-                left.push(nums[i]);
-            }
+                left.pop(), left.push(nums[i]);
         }
         
         for (int i = n - k - 1; i >= k; i--) 
@@ -26,10 +23,7 @@ public:
                 answer++;
             
             else 
-            {
-                right.pop();
-                right.push(nums[i]);
-            }
+                right.pop(), right.push(nums[i]);
         }
         return answer;
     }
