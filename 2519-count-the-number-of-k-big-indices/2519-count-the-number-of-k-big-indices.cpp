@@ -1,3 +1,5 @@
+// For every element, check the top k smallest to the left and to the right.
+
 class Solution {
 public:
     int kBigIndices(vector<int>& nums, int k) {
