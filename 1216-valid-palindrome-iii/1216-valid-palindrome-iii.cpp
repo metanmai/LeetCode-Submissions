@@ -1,3 +1,8 @@
+/* 
+Here, we don't need to send k as a parameter. Instead, find the minimum cost required
+to create a palindrome and then check if it is lesser than or equal to k.
+*/
+
 class Solution {
 private:
     int minCostPalindrome(vector<vector<int>> &dp, string &s, int i, int j, int n)
