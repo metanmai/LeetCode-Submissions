@@ -2,16 +2,13 @@ class Solution {
 public:
     int numJewelsInStones(string jewels, string stones) {
         int answer = 0;
-        map<char, int> myJewels, myStones;
+        set<char> myJewels;
         
         for(char ch : jewels)
-            myJewels[ch]++;
+            myJewels.insert(ch);
         
-        for(char ch : stones)
-            myStones[ch]++;
-        
-        for(auto [jewel, _] : myJewels)
-            answer += myStones[jewel];
+        for(auto jewel : stones)
+            answer += myJewels.count(jewel);
         
         return answer;
     }
