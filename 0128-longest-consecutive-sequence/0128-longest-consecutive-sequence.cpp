@@ -9,6 +9,7 @@ public:
             if(allNums.count(num - 1))
                 continue;
             
+            // Only the start of a sequence gets to this part, because if num - 1 is not present in the set then it must be the start of a sequence.
             int currNum = num, currStreak = 1;
 
             while(allNums.count(currNum + 1))
