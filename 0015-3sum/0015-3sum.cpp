@@ -14,10 +14,10 @@ public:
             while(j < k)
             {
                 if(nums[i] + nums[j] + nums[k] < 0)
-                    j++;
+                    j = upper_bound(nums.begin() + j, nums.end(), nums[j]) - nums.begin();
                 
                 else if(nums[i] + nums[j] + nums[k] > 0)
-                    k--;
+                    k = upper_bound(nums.begin() + j, nums.end(), nums[k] - 1) - nums.begin() - 1;
                 
                 else
                 {
