@@ -12,6 +12,7 @@ public:
             
             dq.push_back(i);
         }
+        
         answer.push_back(nums[dq.front()]);
 
         for (int i = k; i < n; i++)
