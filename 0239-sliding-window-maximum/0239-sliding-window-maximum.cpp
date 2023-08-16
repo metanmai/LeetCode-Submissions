@@ -1,3 +1,8 @@
+/*
+Use a monotonic queue. The front of the queue is always going to be the largest element. 
+If the front is more then k steps away from the current pointer, pop it.
+*/
+
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
