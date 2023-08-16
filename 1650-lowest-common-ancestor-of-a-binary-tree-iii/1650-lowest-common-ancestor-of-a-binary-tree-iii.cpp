@@ -9,6 +9,11 @@ public:
 };
 */
 
+/*
+Keep rolling back p and q to their parents. Then one of them visits a node that has already
+been visited, that must be the LCA so we return that.
+*/
+
 class Solution {
 public:
     Node* lowestCommonAncestor(Node* p, Node* q) {
