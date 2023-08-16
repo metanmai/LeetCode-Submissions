@@ -22,8 +22,6 @@ public:
                 else
                 {
                     answer.push_back({nums[i], nums[j], nums[k]});
-                    int jstart = nums[j], kstart = nums[k];
-                    
                     j = upper_bound(nums.begin() + j, nums.end(), nums[j]) - nums.begin();
                     k = upper_bound(nums.begin() + j, nums.end(), nums[k] - 1) - nums.begin() - 1;
                 }
