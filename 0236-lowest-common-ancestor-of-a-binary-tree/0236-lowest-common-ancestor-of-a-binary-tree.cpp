@@ -19,12 +19,6 @@ public:
         if(root == p or root == q or (left and right))
             return root;
         
-        if(left)
-            return left;
-        
-        if(right)
-            return right;
-        
-        return NULL;
+        return left ? left : right;
     }
 };
