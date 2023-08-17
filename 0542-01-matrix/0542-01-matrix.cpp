@@ -16,10 +16,7 @@ public:
         for(int i = 0; i < m; i++)
             for(int j = 0; j < n; j++)
                 if(mat[i][j] == 0)
-                {
-                    q.push({i, j});
-                    visited[i][j] = true;
-                }
+                    q.push({i, j}), visited[i][j] = true;
         
         while(!q.empty())
         {
