@@ -15,24 +15,24 @@ public:
             return NULL;
         
         ListNode *curr = head, *newHead;
-        priority_queue<int, vector<int>, greater<>> pq;
+        priority_queue<pair<int, ListNode*>, vector<pair<int, ListNode*>>, greater<>> pq;
         
         while(curr)
         {
-            pq.push(curr->val);
+            pq.push({curr->val, curr});
             curr = curr->next;
         }
         
-        curr = new ListNode(pq.top()), newHead = curr;
+        curr = pq.top().second, newHead = curr;
         pq.pop();
         
         while(!pq.empty())
         {
-            curr->next = new ListNode(pq.top()), pq.pop();
+            curr->next = pq.top().second, pq.pop();
             curr = curr->next;
         }
         
-        ListNode *temp = newHead;
+        curr->next = NULL;
         
         return newHead;
     }
