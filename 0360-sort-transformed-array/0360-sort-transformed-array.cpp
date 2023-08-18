@@ -9,11 +9,36 @@ public:
     vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {
         int n = nums.size();
         vector<int> answer(n);
+        int i = 0, j = n - 1, k = 0;
         
-        for(int i = 0; i < n; i++)
-            answer[i] = getValue(nums[i], a, b, c);
+        while(i <= j)
+        {
+            int leftVal = getValue(nums[i], a, b, c);
+            int rightVal = getValue(nums[j], a, b, c);
+            
+            if(a < 0)
+            {
+                if(leftVal < rightVal)
+                    answer[k] = leftVal, i++;
+            
+                else
+                    answer[k] = rightVal, j--;
+            }
+            
+            else
+            {
+                if(leftVal > rightVal)
+                    answer[k] = leftVal, i++;
+            
+                else
+                    answer[k] = rightVal, j--;
+            }
+            
+            k++;
+        }
         
-        sort(answer.begin(), answer.end());
+        if(a >= 0)
+            reverse(answer.begin(), answer.end());
         
         return answer;
     }
