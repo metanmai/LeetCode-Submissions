@@ -14,7 +14,7 @@ private:
         {
             int tempAns = (
                 solve(dp, values, i, k) + solve(dp, values, k + 1, j) + 
-                values[i - 1] * values[j] * values[k]
+                values[i - 1] * values[k] * values[j]
             );
             mini = min(mini, tempAns);
         }  
