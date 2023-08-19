@@ -2,8 +2,8 @@ class Solution {
 public:
     string alienOrder(vector<string>& words) {
         string answer = "";
-        map<char, set<char>> adj;
-        set<char> characters;
+        map<char, unordered_set<char>> adj;
+        unordered_set<char> characters;
         map<char, int> indegree;
         queue<char> q;
         vector<string> tempWords = {words[0]};
