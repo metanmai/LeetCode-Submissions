@@ -2,8 +2,7 @@ class Solution {
 public:
     vector<int> findRightInterval(vector<vector<int>>& intervals) {
         int n = intervals.size();
-        vector<int> answer(n, -1);
-        vector<int> starts(n);
+        vector<int> answer(n), starts(n);
         vector<vector<int>> startIndices(n);
         
         for(int i = 0; i < n; i++)
