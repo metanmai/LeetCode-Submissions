@@ -1,3 +1,6 @@
+// Time: O(n)
+// Space: O(n)
+
 class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
