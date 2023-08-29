@@ -1,17 +1,21 @@
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
 class Solution {
 public:
     int bestClosingTime(string customers) {
-        int n = customers.length(), minIndex = n, minPenalty = n, leftNs = 0;
-        vector<int> rightYs(n + 1);
+        int n = customers.length(), minIndex = n, minPenalty = n, leftNs = 0, leftYs = 0, totalYs = 0;
         
-        for(int i = n - 1; i >= 0; i--)
-            rightYs[i] = rightYs[i + 1] + (customers[i] == 'Y');
+        for(char ch : customers)
+            totalYs += ch == 'Y';
         
         for(int i = 0; i <= n; i++)
         {
-            if(leftNs + rightYs[i] < minPenalty)
-                minPenalty = leftNs + rightYs[i], minIndex = i;
+            if(leftNs + totalYs - leftYs < minPenalty)
+                minPenalty = leftNs + totalYs - leftYs, minIndex = i;
             
+            // Idk how this is working even when i == n.
+            leftYs += customers[i] == 'Y'; 
             leftNs += customers[i] == 'N';
         }
         
