@@ -4,7 +4,8 @@
 class Solution {
 public:
     int bestClosingTime(string customers) {
-        int n = customers.length(), minIndex = n, minPenalty = n, leftNs = 0, leftYs = 0, totalYs = 0;
+        int n = customers.length(), minIndex = n, minPenalty = n;
+        int leftNs = 0, leftYs = 0, totalYs = 0;
         
         for(char ch : customers)
             totalYs += ch == 'Y';
