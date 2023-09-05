@@ -21,7 +21,7 @@ private:
         if(!head)
             return NULL;
         
-        if(visited.find(head) != visited.end())
+        if(visited.count(head))
             return visited[head];
         
         visited[head] = new Node(head->val);
