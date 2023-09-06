@@ -31,7 +31,9 @@ public:
                 else
                     part->next = curr, part = part->next;
                 
-                count++;
+                count++, n--;
+                prev = curr;
+                curr = curr->next;
             }
             
             else
@@ -42,13 +44,7 @@ public:
                 
                 if(k > 0)
                     split = ceil((float) n / k);
-                
-                continue;
             }
-            
-            prev = curr;
-            curr = curr->next;
-            n--;
         }
         
         while(k)
