@@ -1,3 +1,5 @@
+// Suffix characters solution.
+
 class Solution {
 private:
     int findMaxConfusion(string &answerKey, int k, vector<int> &right, char ch, int n)
