@@ -1,48 +1,26 @@
-// Suffix characters solution.
+// Pure Sliding Window Solution.
 // Time Complexity : O(n)
-// Space Complexity : O(n)
+// Space Complexity : O(1)
 
 class Solution {
-private:
-    int findMaxConfusion(string &answerKey, int k, vector<int> &right, char ch, int n)
-    {
-        int maxConfusion = 0, i = 0, flips = 0, left = 0, curr = 0;
-        
-        for(int j = 0; j < n; j++)
-        {
-            if(answerKey[j] == ch)
-                curr++;
-            
-            else if(flips < k)
-                curr++, flips++;
-            
-            else
-            {
-                while(answerKey[i] == ch)
-                    i++;
-                
-                if(i < j)
-                    i++;
-            }
-            
-            maxConfusion = max(maxConfusion, j - i + 1 + right[j]);
-        }
-        
-        return maxConfusion;
-    }
-    
 public:
     int maxConsecutiveAnswers(string answerKey, int k) {
-        int n = answerKey.length(), maxConfusion = 0;
-        vector<vector<int>> right(2, vector<int> (n + 1)); // 0 = F, 1 = T.
+        int n = answerKey.length(), maxSize = k, i = 0;
+        unordered_map<char, int> count;
         
-        for(int k = n - 1; k >= 0; k--)
+        for (int i = 0; i < k; i++)
+            count[answerKey[i]]++;
+        
+        for (int j = k; j < n; j++)
         {
-            right[1][k] = answerKey[k + 1] == 'T' ? right[1][k + 1] + 1 : 0;
-            right[0][k] = answerKey[k + 1] == 'F' ? right[0][k + 1] + 1 : 0;
+            count[answerKey[j]]++;
+            
+            while (min(count['T'], count['F']) > k)
+                count[answerKey[i]]--, i++;
+            
+            maxSize = max(maxSize, j - i + 1);
         }
-        
-        return max(findMaxConfusion(answerKey, k, right[1], 'T', n),
-                   findMaxConfusion(answerKey, k, right[0], 'F', n));
+                    
+        return maxSize;
     }
 };
