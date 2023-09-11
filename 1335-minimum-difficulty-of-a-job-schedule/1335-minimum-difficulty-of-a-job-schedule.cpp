@@ -11,10 +11,7 @@ private:
         int difficulty = INT_MAX, maxVal = jobDifficulty[start];
         
         for(int i = start; i < n - d + 1; i++)
-        {
-            maxVal = max(maxVal, jobDifficulty[i]);
-            difficulty = min(difficulty, maxVal + findMinDifficulty(dp, jobDifficulty, d - 1, i + 1, n));
-        }
+            difficulty = min(difficulty, (maxVal = max(maxVal, jobDifficulty[i])) + findMinDifficulty(dp, jobDifficulty, d - 1, i + 1, n));
         
         return dp[start][d] = difficulty;
     }
