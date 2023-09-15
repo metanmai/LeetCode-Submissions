@@ -1,40 +1,28 @@
-// Two Pass Solution.
+// Weird stack + DP solution.
 
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        int n = s.length(), open = 0, close = 0, maxLen = 0;
+        int n = s.length(), currLen = 0, maxLen = 0;
+        vector<bool> used(n);
+        stack<int> st;
         
         for(int i = 0; i < n; i++)
         {
             if(s[i] == '(')
-                open++;
+                st.push(i);
             
-            else
-                close++;
-            
-            if(close > open)
-                open = close = 0;
-            
-            else if(open == close)
-                maxLen = max(maxLen, 2 * close);
+            else if(!st.empty())
+            {
+                used[st.top()] = used[i] = true;
+                st.pop();
+            }
         }
         
-        open = close = 0;
-        
-        for(int i = n - 1; i >= 0; i--)
+        for(int i = 0; i < n; i++)
         {
-            if(s[i] == '(')
-                open++;
-            
-            else
-                close++;
-            
-            if(open > close)
-                open = close = 0;
-            
-            else if(open == close)
-                maxLen = max(maxLen, 2 * open);
+            currLen = used[i] ? currLen + 1 : 0;
+            maxLen = max(maxLen, currLen);
         }
         
         return maxLen;
