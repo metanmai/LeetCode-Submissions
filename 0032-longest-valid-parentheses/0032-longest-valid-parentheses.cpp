@@ -20,7 +20,7 @@ public:
         for(int i = 0; i < n; i++)
         {
             if(s[i] == '(' and !usedOpen[i] or 
-                s[i] == ')' and !usedClose[i])
+               s[i] == ')' and !usedClose[i])
                 currLen = 0;
             
             else
