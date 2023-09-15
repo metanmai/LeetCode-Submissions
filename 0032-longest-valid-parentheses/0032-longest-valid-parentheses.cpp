@@ -1,3 +1,5 @@
+// Weird stack + DP solution.
+
 class Solution {
 public:
     int longestValidParentheses(string s) {
