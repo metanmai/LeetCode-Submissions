@@ -1,77 +1,45 @@
+/* 
+Here, The catch is to use a visited vector which not only keeps track of whether
+or not a node has been visited, but also checks whether or not it was visited 
+with a particular state. 
+*/
+
 class Solution {
-private:
-    struct tuple
-    {
-        int node, mask, cost;
-        tuple(int node, int mask, int cost)
-        {
-            this -> node = node;
-            this -> mask = mask;
-            this -> cost = cost;
-        }
-    };
-    
 public:
     int shortestPathLength(vector<vector<int>>& graph) {
-        // total number of nodes present
-        int n = graph.size(); // extracting size of graph
+        int n = graph.size(), finalMask = (1 << n) - 1, minPath = 0;
+        vector<vector<bool>> visited(n, vector<bool> (finalMask + 1));
+        queue<pair<int, int>> q;
         
-        
-        queue<tuple> q; // queue of class tuple type
-        
-         // set to take care which path we have already visited
-        set<pair<int, int>> vis;
-        
-        int all = (1 << n) - 1; // if all nodes visited then
-            
-        // we don't know which node will give us shortest path so intially for all nodes we will store in our queue
         for(int i = 0; i < n; i++)
-        {
-            int maskValue = (1 << i); // 2 ^ i
-            
-            tuple thisNode(i, maskValue, 1); // make a tuple for every nod
-            
-            q.push(thisNode); // push tuple into our queue
-            
-            vis.insert({i, maskValue}); // also update into our set
-        }
+            q.push({i, 1 << i});
         
-        // Implementing BFS
-        while(q.empty() == false) // until queue is not empty
+        while(!q.empty())
         {
-            tuple curr = q.front(); // extracting front tuple
-            q.pop(); // pop from queuu
+            minPath++;
+            int len = q.size();
             
-            // if mask value becomes all, that means we have visited all of our nodes, so from here return cost - 1
-            if(curr.mask == all) 
+            while(len--)
             {
-                return curr.cost - 1;
-            }
-            
-            // if not, start exploring in its adjcant
-            for(auto &adj: graph[curr.node])
-            {
-                int bothVisitedMask = curr.mask; // current mask
+                auto [currNode, currMask] = q.front(); q.pop();
                 
-                // we are moving from one node o anthor node
-                bothVisitedMask = bothVisitedMask | (1 << adj); 
-                
-                // make tuple of this path
-                tuple ThisNode(adj, bothVisitedMask, curr.cost + 1);
-                
-                // if this path is not explored i.e
-                // if it is not present in our set then,
-                if(vis.find({adj, bothVisitedMask}) == vis.end())
+                for(int nextNode : graph[currNode])
                 {
-                    vis.insert({adj, bothVisitedMask}); // insert into set
+                    int nextMask = currMask | (1 << nextNode);
                     
-                    q.push(ThisNode); // also insert into queue
+                    if(nextMask == finalMask)
+                        return minPath;
+                    
+                    if(visited[nextNode][nextMask])
+                        continue;
+                    
+                    visited[nextNode][nextMask] = true;
+                    
+                    q.push({nextNode, nextMask});
                 }
             }
-            
         }
         
-        // return -1, but this condition will never come
-        return -1;
+        return 0;
     }
 };
