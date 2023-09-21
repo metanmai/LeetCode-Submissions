@@ -6,7 +6,7 @@ public:
                 return i;
         
         for(int i = (int) sqrt(n); i >= 1; --i) 
-            if(n % (n/i) == 0 and --k == 0) 
+            if(n % (n / i) == 0 and --k == 0) 
                 return n / i;
         
         return -1;
