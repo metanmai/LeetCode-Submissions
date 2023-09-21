@@ -5,23 +5,14 @@ Space Complexity: O(1)
 */
 
 class Solution {
-private:
-    long long summation(int n)
-    {
-        return (long long) n * (n + 1) / 2;
-    }
-    
-public:
+  public:
     int consecutiveNumbersSum(int n) {
-        int totalWays = 0;
+        int totalWays = 0, upperLimit = sqrt(2 * n + 0.25) - 0.5;
         
-        for(int i = 1; i <= sqrt(2 * n); i++) // Difference here is this.
-        {
-            int val = n - summation(i - 1);
-            
-            if(val > 0 and val % i == 0)
+        // Check solution to see why upper bound is this.
+        for(int i = 1; i <= upperLimit; i++)
+            if((long long) (n - (i * (i - 1) / 2)) % i == 0)
                 totalWays++;
-        }
         
         return totalWays;
     }
