@@ -8,8 +8,7 @@ public:
         {
             for(int j = i + 1; j < n; j++)
             {
-                int val = target - nums[i] - nums[j];
-                int pos = lower_bound(nums.begin() + j + 1, nums.end(), val) - nums.begin();
+                int pos = lower_bound(nums.begin() + j + 1, nums.end(), target - nums[i] - nums[j]) - nums.begin();
                 
                 answer += pos - (j + 1);
             }
