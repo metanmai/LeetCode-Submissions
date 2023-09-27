@@ -17,6 +17,7 @@ public:
 
             len = (s[i] >= '1' and s[i] <= '9') ? len / (s[i] - '0') : len - 1;
         }
+        
         return "";
     }
 };
