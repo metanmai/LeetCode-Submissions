@@ -2,6 +2,8 @@
 Stack Solution
 Time Complexity: O(n)
 Space Complexity: O(n)
+
+In the Prefix/Suffix Max solution, we add the water column-wise. Here we add it row-wise.
 */
 
 class Solution {
