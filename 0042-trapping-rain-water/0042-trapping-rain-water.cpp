@@ -3,7 +3,7 @@ Two Pointer Solution
 Time Complexity: O(n)
 Space Complexity: O(1)
 
-In the Prefix/Suffix Max solution, we add the water column-wise. Here we add it row-wise.
+Similar Idea to Prefix/Suffix Max Solution.
 */
 
 class Solution {
