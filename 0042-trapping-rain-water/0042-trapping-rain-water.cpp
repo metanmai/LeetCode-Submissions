@@ -1,7 +1,7 @@
 /* 
-Stack Solution
+Two Pointer Solution
 Time Complexity: O(n)
-Space Complexity: O(n)
+Space Complexity: O(1)
 
 In the Prefix/Suffix Max solution, we add the water column-wise. Here we add it row-wise.
 */
@@ -9,25 +9,23 @@ In the Prefix/Suffix Max solution, we add the water column-wise. Here we add it 
 class Solution {
 public:
     int trap(vector<int>& height) {
-        int n = height.size(), totalWater = 0;
-        stack<int> st;
-        
-        for(int i = 0; i < n; i++)
+        int totalWater = 0, left = 0, right = height.size() - 1;
+        int left_max = 0, right_max = 0;
+        while (left < right) 
         {
-            while (!st.empty() and height[i] > height[st.top()]) 
-            {
-                int curr = st.top(); st.pop();
-                
-                if (st.empty())
-                    break;
-                
-                int distance = i - st.top() - 1;
-                int level = min(height[i], height[st.top()]) - height[curr];
-                
-                totalWater += distance * level;
+            
+            if (height[left] < height[right]) {
+                height[left] >= left_max ? (left_max = height[left]) : 
+                                            totalWater += (left_max - height[left]);
+                left++;
             }
             
-            st.push(i);
+            else 
+            {
+                height[right] >= right_max ? (right_max = height[right]) : 
+                                              totalWater += (right_max - height[right]);
+                right--;
+            }
         }
         
         return totalWater;
