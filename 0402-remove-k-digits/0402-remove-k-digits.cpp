@@ -13,13 +13,13 @@ public:
         
         while(st.length() and k--) 
             st.pop_back();
-
-        reverse(begin(st), end(st));
+        
+        reverse(st.begin(), st.end());
 
         while(st.length() and st.back() == '0') 
             st.pop_back();
 
-        reverse(begin(st), end(st));
+        reverse(st.begin(), st.end());
         
         return st == "" ? "0" : st;
     }
