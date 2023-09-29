@@ -1,4 +1,9 @@
-/* You can jump from index i to j, if:
+/* 
+Stack + Djikstra Solution.
+Time Complexity: O(V^2)
+Space Complexity: O(n)
+
+You can jump from index i to j, if:
 1. If nums[i] <= nums[j] and all the values between i and j are lesser than i.
 2. If nums[i] > nums[j] and all the values between i and j are greater than or equal to i.
 */
