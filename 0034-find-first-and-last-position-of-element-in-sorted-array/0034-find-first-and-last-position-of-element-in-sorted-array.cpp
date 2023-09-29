@@ -11,7 +11,7 @@ public:
         // First Position.
         while(low < high)
         {
-            int mid = (low + high) / 2;
+            int mid = midpoint(low, high);
             
             if(nums[mid] < target)
                 low = mid + 1;
@@ -28,7 +28,7 @@ public:
         // Last Position.
         while(low < high)
         {
-            int mid = (low + high + 1) / 2;
+            int mid = midpoint(low + 1, high);
             
             if(nums[mid] <= target)
                 low = mid;
