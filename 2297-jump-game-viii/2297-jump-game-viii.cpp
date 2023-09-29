@@ -1,6 +1,6 @@
 /* 
-Stack + Djikstra Solution.
-Time Complexity: O(V^2)
+Pure Stack + DP Solution.
+Time Complexity: O(n)
 Space Complexity: O(n)
 
 You can jump from index i to j, if:
@@ -12,49 +12,32 @@ class Solution {
 public:
     long long minCost(vector<int>& nums, vector<int>& costs) {
         int n = nums.size();
-        stack<int> stk;
-        vector<long long> minCost(n, LLONG_MAX);
-        vector<vector<int>> adj(n);
-        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<>> pq;
-        pq.push({0, 0});
-        minCost[0] = 0;
+        stack<int> stk1, stk2;
+        vector<long long> total(n, LLONG_MAX);
+        total[0] = 0;
         
-        // Next greater element.
-        for(int i = 0; i < n; i++)
+        stk1.push(0);
+        stk2.push(0);
+
+        for(int i = 1; i < n; i++) 
         {
-            while(!stk.empty() and nums[i] >= nums[stk.top()])
+            while(!stk1.empty() and nums[stk1.top()] > nums[i]) 
             {
-                adj[stk.top()].push_back(i);
-                stk.pop();
+                total[i] = min(total[i], total[stk1.top()] + costs[i]);
+                stk1.pop();
             }
             
-            stk.push(i);
-        }
-        
-        stk = stack<int>{};
-        
-        // Next smaller element.
-        for(int i = 0; i < n; i++)
-        {
-            while(!stk.empty() and nums[i] < nums[stk.top()])
+            stk1.push(i);
+            
+            while(!stk2.empty() and nums[stk2.top()] <= nums[i]) 
             {
-                adj[stk.top()].push_back(i);
-                stk.pop();
+                total[i] = min(total[i], total[stk2.top()] + costs[i]);
+                stk2.pop();
             }
             
-            stk.push(i);
+            stk2.push(i);
         }
         
-        // Dijkstra's algorithm.
-        while(!pq.empty())
-        {
-            auto [currCost, currEle] = pq.top(); pq.pop();
-            
-            for(int nextEle : adj[currEle])
-                if(costs[nextEle] + currCost < minCost[nextEle])
-                    pq.push({minCost[nextEle] = costs[nextEle] + currCost, nextEle});
-        }
-        
-        return minCost.back();
+        return total.back();
     }
 };
