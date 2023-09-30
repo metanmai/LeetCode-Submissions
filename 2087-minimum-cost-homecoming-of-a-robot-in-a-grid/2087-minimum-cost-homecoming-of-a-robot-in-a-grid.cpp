@@ -13,10 +13,10 @@ public:
         int cost = 0;
         int dr = startPos[0] > homePos[0] ? -1 : 1, dc = startPos[1] > homePos[1] ? -1 : 1;
         
-        for (int r = startPos[0]; r != homePos[0]; r += dr)
+        for(int r = startPos[0]; r != homePos[0]; r += dr)
             cost += rowCosts[r + dr];
         
-        for (int c = startPos[1]; c != homePos[1]; c += dc)
+        for(int c = startPos[1]; c != homePos[1]; c += dc)
             cost += colCosts[c + dc];
         
         return cost;
