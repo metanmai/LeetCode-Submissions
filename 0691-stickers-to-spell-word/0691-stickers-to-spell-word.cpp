@@ -1,33 +1,35 @@
+#define MAXI 1e9
+
 class Solution {
 private:
-    int findMinStickers(unordered_map<string, int> &dp, vector<vector<int>> &stkrFreqs, string &target, int n)
+    int getMinStickers(unordered_map<string, int> &dp, vector<vector<int>> &stickerMap,
+                       string &target)
     {
         if(target == "")
             return 0;
         
-        if(dp.find(target) != dp.end())
+        if(dp.count(target))
             return dp[target];
         
-        int minStickers = 1e9;
+        int minStickers = MAXI;
         
-        for(auto tempStick : stkrFreqs)
+        for(auto sticker : stickerMap)
         {
-            string notFound = "";
+            string remLetters = "";
             
-            for(char &ch : target)
+            for(char ch : target)
             {
-                if(tempStick[ch - 'a'] > 0)
-                    tempStick[ch - 'a']--;
+                if(sticker[ch - 'a'] > 0)
+                    sticker[ch - 'a']--;
                 
                 else
-                    notFound.push_back(ch);
+                    remLetters.push_back(ch);
             }
             
-            if(notFound == target)
+            if(remLetters == target)
                 continue;
             
-            int nextStickers = findMinStickers(dp, stkrFreqs, notFound, n);
-            minStickers = min(minStickers, 1 + nextStickers);
+            minStickers = min(minStickers, 1 + getMinStickers(dp, stickerMap, remLetters));
         }
         
         return dp[target] = minStickers;
@@ -36,20 +38,14 @@ private:
 public:
     int minStickers(vector<string>& stickers, string target) {
         int n = stickers.size();
-        vector<vector<int>> stkrFreqs;
         unordered_map<string, int> dp;
+        vector<vector<int>> stickerMap(n, vector<int> (26));
         
-        for(auto &sticker : stickers)
-        {
-            vector<int> currStkr(26);
-            
-            for(char ch : sticker)
-                currStkr[ch - 'a']++;
-            
-            stkrFreqs.push_back(currStkr);
-        }
+        for(int i = 0; i < n; i++)
+            for(char ch : stickers[i])
+                stickerMap[i][ch - 'a']++;
         
-        int answer = findMinStickers(dp, stkrFreqs, target, n);
+        int answer = getMinStickers(dp, stickerMap, target);
         
         return answer == 1e9 ? -1 : answer;
     }
