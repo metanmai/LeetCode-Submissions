@@ -1,35 +1,35 @@
 struct Node
 {
     Node *links[26];
-    int count1 = 0, count2 = 0;
+    int prefixCount = 0, wordCount = 0;
 };
 
 class Trie {
 public:
     Node *root;
-    
+
     Trie() {
         root = new Node();
     }
     
     void insert(string word) {
         Node *node = root;
-        
+
         for(char c : word)
         {
             if(!node->links[c - 'a'])
                 node->links[c - 'a'] = new Node();
             
-            node->links[c - 'a']->count2++;
             node = node->links[c - 'a'];
+            node->prefixCount++;
         }
-        
-        node->count1++;
+
+        node->wordCount++;
     }
     
     int countWordsEqualTo(string word) {
         Node *node = root;
-        
+
         for(char c : word)
         {
             if(!node->links[c - 'a'])
@@ -37,34 +37,34 @@ public:
             
             node = node->links[c - 'a'];
         }
-        
-        return node->count1;
+
+        return node->wordCount;
     }
     
     int countWordsStartingWith(string prefix) {
         Node *node = root;
-        
+
         for(char c : prefix)
         {
-            if(!node->links[c - 'a'] or !node->links[c - 'a'])
+            if(!node->links[c - 'a'])
                 return 0;
             
             node = node->links[c - 'a'];
         }
-        
-        return node->count2;
+
+        return node->prefixCount;
     }
     
     void erase(string word) {
         Node *node = root;
-        
+
         for(char c : word)
         {
-            node->links[c - 'a']->count2--;
             node = node->links[c - 'a'];
+            node->prefixCount--;
         }
-        
-        node->count1--;
+
+        node->wordCount--;
     }
 };
 
