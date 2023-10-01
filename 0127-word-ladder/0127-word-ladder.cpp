@@ -1,25 +1,18 @@
 class Solution {
-private:
-    struct word
-    {
-        string w;
-        bool visited;
-    };
-
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         int transformations = 1;
-        map<string, vector<word>> mp;
+        map<string, vector<string>> mp;
+        set<string> visited;
         queue<string> q;
         
-        // Making a map of all possible patterns.
         for(auto word : wordList)
         {
             string temp = word;
             for(int i = 0; i < temp.length(); i++)
             {
                 temp[i] = '*';
-                mp[temp].push_back({word, false});
+                mp[temp].push_back(word);
                 temp[i] = word[i];
             }
         }
@@ -39,18 +32,17 @@ public:
                 if(curr == endWord)
                     return transformations;
                 
-                // Check all neighbours of curr.
                 for(int i = 0; i < curr.length(); i++)
                 {
                     temp[i] = '*';
                     
-                    for(auto &next : mp[temp])
+                    for(auto next : mp[temp])
                     {
-                        if(!next.visited)
-                        {
-                            next.visited = true;
-                            q.push(next.w);
-                        }
+                        if(visited.count(next))
+                            continue;
+                        
+                        visited.insert(next);
+                        q.push(next);
                     }
                     
                     temp[i] = curr[i];
