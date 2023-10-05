@@ -11,6 +11,12 @@ public:
             cnt += nums[i] == answer ? 1 : -1;
         }
         
+        cnt = 0;
+        
+        // This second pass is to check if the majority element actually exists.
+        for(int num : nums)
+            cnt += num == answer;
+        
         return answer;
     }
 };
