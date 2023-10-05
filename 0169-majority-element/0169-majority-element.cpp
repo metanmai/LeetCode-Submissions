@@ -17,6 +17,6 @@ public:
         for(int num : nums)
             cnt += num == answer;
         
-        return answer;
+        return cnt > n / 2 ? answer : -1;
     }
 };
